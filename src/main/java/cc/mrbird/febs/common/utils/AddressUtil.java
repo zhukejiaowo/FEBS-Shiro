@@ -26,7 +26,6 @@ public class AddressUtil {
             if (!file.exists()) {
                 String tmpDir = System.getProperties().getProperty("java.io.tmpdir");
                 dbPath = tmpDir + "ip.db";
-                System.out.println(dbPath);
                 file = new File(dbPath);
                 FileUtils.copyInputStreamToFile(AddressUtil.class.getClassLoader().getResourceAsStream("classpath:ip2region/ip2region.db"), file);
             }
