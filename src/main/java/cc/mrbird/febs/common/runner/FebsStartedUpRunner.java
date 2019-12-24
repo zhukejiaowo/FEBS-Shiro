@@ -3,7 +3,6 @@ package cc.mrbird.febs.common.runner;
 import cc.mrbird.febs.common.properties.FebsProperties;
 import cc.mrbird.febs.common.service.RedisService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -66,8 +65,7 @@ public class FebsStartedUpRunner implements ApplicationRunner {
             log.info("FEBS 权限系统启动完毕，地址：{}", url);
 
             boolean auto = febsProperties.isAutoOpenBrowser();
-            String[] autoEnv = febsProperties.getAutoOpenBrowserEnv();
-            if (auto && ArrayUtils.contains(autoEnv, active)) {
+            if (auto && StringUtils.equalsIgnoreCase(active, "dev")) {
                 String os = System.getProperty("os.name");
                 // 默认为 windows时才自动打开页面
                 if (StringUtils.containsIgnoreCase(os, "windows")) {

@@ -107,6 +107,7 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, SystemLog> implements
         save(systemLog);
     }
 
+    @SuppressWarnings("all")
     private StringBuilder handleParams(StringBuilder params, Object[] args, List paramNames) {
         try {
             for (int i = 0; i < args.length; i++) {
