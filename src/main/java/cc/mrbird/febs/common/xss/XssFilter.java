@@ -1,5 +1,6 @@
 package cc.mrbird.febs.common.xss;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -19,9 +20,9 @@ import java.util.regex.Pattern;
  *
  * @author MrBird
  */
+@Slf4j
 public class XssFilter implements Filter {
 
-    private static Logger logger = LoggerFactory.getLogger(XssFilter.class);
     // 是否过滤富文本内容
     private boolean flag = false;
 
@@ -29,7 +30,7 @@ public class XssFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
-        logger.info("------------ xss filter init ------------");
+        log.info("------------ xss filter init ------------");
         String isIncludeRichText = filterConfig.getInitParameter("isIncludeRichText");
         if (StringUtils.isNotBlank(isIncludeRichText)) {
             flag = BooleanUtils.toBoolean(isIncludeRichText);
